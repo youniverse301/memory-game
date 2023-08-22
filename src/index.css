@@ -12,7 +12,26 @@ code {
     monospace;
 }
 
-#test {
-  height: 500px;
-  width: 500px;
+#main-componet {
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+}
+
+#cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+}
+
+.card > img {
+  height: 250px;
 }

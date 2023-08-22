@@ -8,9 +8,6 @@ export default function MainComponent() {
   return (
     <div id='main-componet'>
       <Imagecard/>
-      <Imagecard/>
-      <Imagecard/>
-      <Imagecard/>
     </div>
   )
 }
