@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { characterList } from './data';
-import Imagecard from "./ImageCard";
+import {MainGame} from "./mainGame";
 
 export default function MainComponent() {
 
 
   return (
     <div id='main-componet'>
-      <Imagecard/>
+      <MainGame />
     </div>
   )
 }

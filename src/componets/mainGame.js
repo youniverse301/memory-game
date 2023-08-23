@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { characterList } from './data';
 
+
 function shuffleUnselected(characterList) {
   const unselectedItems = characterList.filter(item => !item.beenSelected);
   const shuffledUnselected = unselectedItems
@@ -14,7 +15,7 @@ const sorted = shuffleUnselected(characterList)
 
 let currentIndex = 0;
 
-export default function ImageCard() {
+export function MainGame() {
   const [stage, setStage] = useState(1);
   const [character, setCharacter] = useState(sorted); // Initialize with shuffled array
   const [stage1Characters, setStage1Characters] = useState([character[0], character[1],
@@ -26,35 +27,36 @@ export default function ImageCard() {
     character[16], character[17]]);
   const [clickedCharacters, setClickedCharacters] = useState([]);
   const [currentStageCharacters ,setCurrentStageCharacters] = useState(stage1Characters);
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
-  console.log(currentStageCharacters)
 
   const current = currentIndex;
   currentIndex += 1;
-  console.log(character)
   const unsorted = characterList;
 
 
   const handleClick = (event) => {
     const id = event.target.parentNode.id;
-    console.log(event.target.parentNode)
     const clickedCharacter = unsorted[id];
-    console.log(clickedCharacter)
   
     if (clickedCharacter.beenClicked === false) {
       // Update the clicked characters state
       setClickedCharacters((prevClicked) => [...prevClicked, clickedCharacter]);
-      // Update the character's state directly
-      setCharacter((prevChars) =>
-        prevChars.map((char) =>
-          char.id === clickedCharacter.id ? { ...char, beenClicked: true } : char
-        )
-      );
+      clickedCharacter.beenClicked = true;
+      setCurrentScore((prevScore) => prevScore + 1);
+      checkBestScore();
       shuffleElements();
     } else {
       console.log('Already clicked');
     }
   };
+
+  function checkBestScore() {
+    if (bestScore <= currentScore) {
+      setBestScore((prevBest) => prevBest + 1)
+    }
+  }
 
   useEffect(() => {
     // Logic to handle advancing stages and shuffling
@@ -196,6 +198,15 @@ export default function ImageCard() {
   }
 
   return (
-    stageResponse(stage)
+    <div id='boardContainer'>
+      <div id='currentScore'>
+        <p>Current score: {currentScore}</p>
+      </div>
+      <div id='bestScore'>
+        <p>Best score: {bestScore}</p>
+      </div>
+      {stageResponse(stage)}
+    </div>
   );
 }
+
