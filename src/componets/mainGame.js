@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { characterList } from './data';
 
 
-function shuffleUnselected(characterList) {
+function shuffleUnselected(array) {
   const unselectedItems = characterList.filter(item => !item.beenSelected);
   const shuffledUnselected = unselectedItems
     .map(item => ({ ...item })) // Create new objects to prevent mutation
@@ -13,27 +13,24 @@ function shuffleUnselected(characterList) {
 
 const sorted = shuffleUnselected(characterList)
 
-let currentIndex = 0;
-
 export function MainGame() {
-  const [stage, setStage] = useState(1);
-  const [character, setCharacter] = useState(sorted); // Initialize with shuffled array
-  const [stage1Characters, setStage1Characters] = useState([character[0], character[1],
+  let [stage, setStage] = useState(1);
+  let [character, setCharacter] = useState(shuffleUnselected(characterList)); // Initialize with shuffled array
+  let [stage1Characters, setStage1Characters] = useState([character[0], character[1],
     character[2], character[3]]);
-  const [stage2Characters, setStage2Characters] = useState([character[4], character[5],
+  let [stage2Characters, setStage2Characters] = useState([character[4], character[5],
     character[6], character[7], character[8], character[9]]);
-  const [stage3Characters, setStage3Characters] = useState([character[10], character[11],
+  let [stage3Characters, setStage3Characters] = useState([character[10], character[11],
     character[12], character[13], character[14], character[15],
     character[16], character[17]]);
-  const [clickedCharacters, setClickedCharacters] = useState([]);
-  const [currentStageCharacters ,setCurrentStageCharacters] = useState(stage1Characters);
-  const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
+  let [clickedCharacters, setClickedCharacters] = useState([]);
+  let [currentStageCharacters ,setCurrentStageCharacters] = useState(stage1Characters);
+  let [currentScore, setCurrentScore] = useState(0);
+  let [bestScore, setBestScore] = useState(0);
 
 
-  const current = currentIndex;
-  currentIndex += 1;
   const unsorted = characterList;
+  const gameOver = document.getElementById('gameOver');
 
 
   const handleClick = (event) => {
@@ -49,6 +46,7 @@ export function MainGame() {
       shuffleElements();
     } else {
       console.log('Already clicked');
+      gameOver.classList.remove('hidden');
     }
   };
 
@@ -59,24 +57,22 @@ export function MainGame() {
   }
 
   useEffect(() => {
-    // Logic to handle advancing stages and shuffling
     if (stage === 1 && clickedCharacters.length === 4) {
       setStage(stage + 1);
       setClickedCharacters([]);
       setCurrentStageCharacters(stage2Characters);
-      console.log('next stage');
       shuffleElements();
     } else if (stage === 2 && clickedCharacters.length === 6) {
       setStage(stage + 1);
-      setCurrentStageCharacters(stage3Characters);
       setClickedCharacters([]);
-      console.log('next stage');
+      setCurrentStageCharacters(stage3Characters);
       shuffleElements();
     } else if (stage === 3 && clickedCharacters.length === 8) {
       setStage(stage + 1);
       console.log('You Win!');
     }
   }, [stage, clickedCharacters]);
+  
 
   const shuffleElements = () => {
     const shuffled = [...currentStageCharacters];
@@ -99,7 +95,34 @@ export function MainGame() {
     console.log(clickedCharacters)
   }, [clickedCharacters])
 
+  function resetGame() {
+    setCurrentScore(0);
+    setStage(1);
+    gameOver.classList.add('hidden');
+  
+    // Shuffle the characters
+    const shuffledCharacters = shuffleUnselected(characterList);
+  
+    // Set the new shuffled characters for the current stage
 
+    setStage1Characters([shuffledCharacters[0], shuffledCharacters[1],
+      shuffledCharacters[2], shuffledCharacters[3]]);
+    setStage2Characters([shuffledCharacters[4], shuffledCharacters[5],
+      shuffledCharacters[6], shuffledCharacters[7], shuffledCharacters[8], shuffledCharacters[9]]);
+    setStage3Characters([shuffledCharacters[10], shuffledCharacters[11],
+      shuffledCharacters[12], shuffledCharacters[13], shuffledCharacters[14], shuffledCharacters[15],
+      shuffledCharacters[16], shuffledCharacters[17]]);
+    setCurrentStageCharacters([
+      shuffledCharacters[0], shuffledCharacters[1], shuffledCharacters[2],
+      shuffledCharacters[3]]);
+  
+    // Reset the beenClicked property for all characters
+    for (let i = 0; i < unsorted.length; i++) {
+      unsorted[i].beenClicked = false;
+    }
+    console.log(unsorted)
+    setClickedCharacters([]);
+  }
   
   let stage1 = (
     <div id='cards'>
@@ -199,6 +222,10 @@ export function MainGame() {
 
   return (
     <div id='boardContainer'>
+      <div id='gameOver' className='hidden'>
+        <p>You lost! Better luck next time.</p>
+        <button onClick={resetGame}>Play Again</button>
+      </div>
       <div id='currentScore'>
         <p>Current score: {currentScore}</p>
       </div>
@@ -209,4 +236,3 @@ export function MainGame() {
     </div>
   );
 }
-
