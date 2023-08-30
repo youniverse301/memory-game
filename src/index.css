@@ -14,8 +14,14 @@ code {
 
 #main-componet {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   max-width: 100vw;
+  height: 100vh;
+}
+
+#boardContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 #cards {
@@ -32,34 +38,138 @@ code {
   width: 160px;
 }
 
+@font-face {
+  font-family: Matisse EB by Fontworks;
+  src: url(../public/FOT-Matisse-Pro-EB.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card >h3 {
+  color: white;
+  font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
+}
+
 .card > img {
   height: 250px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#headerContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 100vw;
+}
+
+
+#scoreContainer {
+  display: flex;
+  height: fit-content;
+  align-self: end;
+  justify-self: center;
+  padding-bottom: 20px;
+  gap: 15px;
 }
 
 #currentScore {
   display: flex;
-  width: 250px;
-  height: 50px;
-  background-color: grey;
+  width: fit-content;
+  height: fit-content;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: white;
+  border-radius: 8px;
 }
 
 #bestScore {
   display: flex;
-  width: 250px;
-  height: 50px;
-  background-color: blanchedalmond;
+  width: fit-content;
+  height: fit-content;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: white;
+  border-radius: 8px;
 }
 
-.hidden {
+#currentScore > p, #bestScore >p {
+  margin: 0;
+  font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
+}
+
+#gameOver.hidden {
   display: none;
 }
 
 #gameOver {
-  width: 350px;
-  height: 150px;
-  background-color: aqua;
+  display: grid;
+  grid-template-columns: .5fr 1fr;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+#leftOver {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 1;
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+}
+
+#leftOver > button {
+  align-self: center;
+  font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
+  font-size: .8rem;
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+#leftOver > p {
+  margin: 0;
+  font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
+}
+
+#gameOver > img {
+  height: 300px;
+}
+
+#titleCard {
+  flex: 1;
+  max-width: 80%;
+  padding-left: 25px;
+  height: 225px;
+  width: 550px;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }

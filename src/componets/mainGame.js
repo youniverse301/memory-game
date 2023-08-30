@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { characterList } from './data';
+import EvaTitleImage from './no-back-title.png';
+import ShinjiChair from './shinji-ikari-chair-png.png'
 
 
 function shuffleUnselected(array) {
@@ -27,11 +29,9 @@ export function MainGame() {
   let [currentStageCharacters ,setCurrentStageCharacters] = useState(stage1Characters);
   let [currentScore, setCurrentScore] = useState(0);
   let [bestScore, setBestScore] = useState(0);
-
+  let [gameOver, setGameOver] = useState(false);
 
   const unsorted = characterList;
-  const gameOver = document.getElementById('gameOver');
-
 
   const handleClick = (event) => {
     const id = event.target.parentNode.id;
@@ -46,7 +46,7 @@ export function MainGame() {
       shuffleElements();
     } else {
       console.log('Already clicked');
-      gameOver.classList.remove('hidden');
+      setGameOver(true);
     }
   };
 
@@ -98,7 +98,7 @@ export function MainGame() {
   function resetGame() {
     setCurrentScore(0);
     setStage(1);
-    gameOver.classList.add('hidden');
+    setGameOver(false);
   
     // Shuffle the characters
     const shuffledCharacters = shuffleUnselected(characterList);
@@ -222,15 +222,24 @@ export function MainGame() {
 
   return (
     <div id='boardContainer'>
-      <div id='gameOver' className='hidden'>
-        <p>You lost! Better luck next time.</p>
-        <button onClick={resetGame}>Play Again</button>
+      <div id='headerContainer'>
+        <img id='titleCard' src={EvaTitleImage} alt="Eva Title" />
+        <div id='scoreContainer'>
+          <div id='currentScore'>
+            <p>Score: {currentScore}</p>
+          </div>
+          <div id='bestScore'>
+            <p>Best score: {bestScore}</p>
+          </div>
+        </div>
       </div>
-      <div id='currentScore'>
-        <p>Current score: {currentScore}</p>
-      </div>
-      <div id='bestScore'>
-        <p>Best score: {bestScore}</p>
+      <div id='gameOver' className={gameOver ? '' : 'hidden'}>
+        <div id='leftOver'>
+          <p>Game Over</p>
+          <p>Your score: {currentScore}</p>
+          <button onClick={resetGame}>Play Again</button>
+        </div>
+        <img src={ShinjiChair} alt='Shinji Ikari sititng in chair with hands in face'></img>
       </div>
       {stageResponse(stage)}
     </div>
