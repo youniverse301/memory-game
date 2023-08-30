@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/youniverse301/static/css/main.5d5d0a0d.css",
-    "main.js": "/youniverse301/static/js/main.b47d8824.js",
-    "static/js/787.69b12325.chunk.js": "/youniverse301/static/js/787.69b12325.chunk.js",
-    "static/media/FOT-Matisse-Pro-EB.otf": "/youniverse301/static/media/FOT-Matisse-Pro-EB.d2c15cce73f4ea9727d6.otf",
-    "static/media/congrats.gif": "/youniverse301/static/media/congrats.9fc6db10836059f2982c.gif",
-    "static/media/no-back-title.png": "/youniverse301/static/media/no-back-title.6a4deceebfb814506792.png",
-    "static/media/background.jpeg": "/youniverse301/static/media/background.610cd53c67992dbd0a6d.jpeg",
-    "static/media/shinji-ikari-chair-png.png": "/youniverse301/static/media/shinji-ikari-chair-png.5d1eab535061c8fc9874.png",
-    "static/media/logo.svg": "/youniverse301/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/youniverse301/index.html",
-    "main.5d5d0a0d.css.map": "/youniverse301/static/css/main.5d5d0a0d.css.map",
-    "main.b47d8824.js.map": "/youniverse301/static/js/main.b47d8824.js.map",
-    "787.69b12325.chunk.js.map": "/youniverse301/static/js/787.69b12325.chunk.js.map"
+    "main.css": "/memory-game/static/css/main.9b02da30.css",
+    "main.js": "/memory-game/static/js/main.5e9b7259.js",
+    "static/js/787.69b12325.chunk.js": "/memory-game/static/js/787.69b12325.chunk.js",
+    "static/media/FOT-Matisse-Pro-EB.otf": "/memory-game/static/media/FOT-Matisse-Pro-EB.d2c15cce73f4ea9727d6.otf",
+    "static/media/congrats.gif": "/memory-game/static/media/congrats.9fc6db10836059f2982c.gif",
+    "static/media/no-back-title.png": "/memory-game/static/media/no-back-title.6a4deceebfb814506792.png",
+    "static/media/background.jpeg": "/memory-game/static/media/background.610cd53c67992dbd0a6d.jpeg",
+    "static/media/shinji-ikari-chair-png.png": "/memory-game/static/media/shinji-ikari-chair-png.5d1eab535061c8fc9874.png",
+    "static/media/logo.svg": "/memory-game/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/memory-game/index.html",
+    "main.9b02da30.css.map": "/memory-game/static/css/main.9b02da30.css.map",
+    "main.5e9b7259.js.map": "/memory-game/static/js/main.5e9b7259.js.map",
+    "787.69b12325.chunk.js.map": "/memory-game/static/js/787.69b12325.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d5d0a0d.css",
-    "static/js/main.b47d8824.js"
+    "static/css/main.9b02da30.css",
+    "static/js/main.5e9b7259.js"
   ]
 }
