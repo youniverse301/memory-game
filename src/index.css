@@ -103,11 +103,11 @@ code {
   font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
 }
 
-#gameOver.hidden {
+#gameOver.hidden, #gameWon.hidden {
   display: none;
 }
 
-#gameOver {
+#gameOver, #gameWon {
   display: grid;
   grid-template-columns: .5fr 1fr;
   padding: 10px;
@@ -128,9 +128,21 @@ code {
   display: flex;
   flex-direction: column;
   grid-column-start: 1;
-  width: fit-content;
+  width: 200px;
   height: fit-content;
   align-self: center;
+}
+
+#leftOver > button {
+  align-self: center;
+  font-family: 'Matisse EB by Fontworks', 'Courier New', Courier, monospace;
+  font-size: .8rem;
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 #leftOver > button {
@@ -153,6 +165,11 @@ code {
 
 #gameOver > img {
   height: 300px;
+}
+
+#gameWon > img { 
+  height: 250px;
+  padding-left: 25px;
 }
 
 #titleCard {

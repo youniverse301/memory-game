@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { characterList } from './data';
 import EvaTitleImage from './no-back-title.png';
-import ShinjiChair from './shinji-ikari-chair-png.png'
+import ShinjiChair from './shinji-ikari-chair-png.png';
+import Congrats from './congrats.gif'
 
 
 function shuffleUnselected(array) {
@@ -30,6 +31,7 @@ export function MainGame() {
   let [currentScore, setCurrentScore] = useState(0);
   let [bestScore, setBestScore] = useState(0);
   let [gameOver, setGameOver] = useState(false);
+  let [gameWon, setGameWon] = useState(false);
 
   const unsorted = characterList;
 
@@ -70,6 +72,7 @@ export function MainGame() {
     } else if (stage === 3 && clickedCharacters.length === 8) {
       setStage(stage + 1);
       console.log('You Win!');
+      setGameWon(true)
     }
   }, [stage, clickedCharacters]);
   
@@ -99,6 +102,7 @@ export function MainGame() {
     setCurrentScore(0);
     setStage(1);
     setGameOver(false);
+    setGameWon(false)
   
     // Shuffle the characters
     const shuffledCharacters = shuffleUnselected(characterList);
@@ -240,6 +244,14 @@ export function MainGame() {
           <button onClick={resetGame}>Play Again</button>
         </div>
         <img src={ShinjiChair} alt='Shinji Ikari sititng in chair with hands in face'></img>
+      </div>
+      <div id='gameWon' className={gameWon ? '' : 'hidden'}>
+        <div id='leftOver'>
+          <p>You Won!</p>
+          <p>Your score: {currentScore}</p>
+          <button onClick={resetGame}>Play Again</button>
+        </div>
+        <img src={Congrats} alt='The characters you clicked from the game clapping their hands and saying congratulations.'></img>
       </div>
       {stageResponse(stage)}
     </div>
